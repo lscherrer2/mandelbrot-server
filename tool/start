@@ -1,0 +1,2 @@
+#!/bin/bash
+uv run uvicorn mbserver.server:app --port 6477 --reload
