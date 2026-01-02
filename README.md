@@ -70,3 +70,22 @@ Example (zoom into a region):
 curl -o zoom.png \
 	"http://127.0.0.1:6477/mandelbrot/generate?xmin=-0.8&xmax=-0.7&ymin=0.05&ymax=0.15&iter=500&width=1200&height=900"
 ```
+
+#### GET /mandelbrot/generate/stream
+
+Streams a series of progressively computed Mandelbrot PNG frames.
+
+The response is `application/octet-stream` and is a sequence of frames encoded as:
+
+- 8-byte big-endian unsigned integer length
+- followed by that many bytes of PNG data
+
+Query Parameters (in addition to `/mandelbrot/generate` params):
+
+- `render_frames`: number of frames to actually colorize/encode and emit (default: `10`)
+- `render_from`: lower-bound iteration index to start emitting frames from (default: `1`)
+
+Notes:
+
+- The server still computes all iterations up to `iter`, but only emits `render_frames` frames.
+- Frames are evenly spaced across iterations `[render_from, iter]` and always include the final image.
