@@ -89,3 +89,10 @@ Notes:
 
 - The server still computes all iterations up to `iter`, but only emits `render_frames` frames.
 - Frames are evenly spaced across iterations `[render_from, iter]` and always include the final image.
+
+
+### Explorer UI
+
+This server can power Mandelbrot UI: https://github.com/lscherrer2/mandelbrot-ui
+
+- Instructions on setting up the UI are in the repo's README
